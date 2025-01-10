@@ -1,11 +1,13 @@
 
 
 import { IExcludedPaths } from "../../utility/authorize";
+import { rolesRouter } from "../roles/roles.routes";
 import { userRouter } from "../users/user.routes";
 import { Route, Routes } from "./routes.types";
 
 export const routes: Routes = [
-    new Route('/user',userRouter)
+    new Route('/user',userRouter),
+    new Route('/role',rolesRouter)
 ];
 
 export const excludedPaths: IExcludedPaths[] = [
