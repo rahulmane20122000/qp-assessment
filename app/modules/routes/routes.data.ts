@@ -11,6 +11,5 @@ export const routes: Routes = [
 ];
 
 export const excludedPaths: IExcludedPaths[] = [
-  { path: '/auth/login', method: "POST" },
-  { path: '/auth/change-password/', method: "PUT" },
+  { path: '/user/register', method: "POST" }
 ]

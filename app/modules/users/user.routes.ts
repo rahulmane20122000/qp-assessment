@@ -1,15 +1,19 @@
 import { Router } from "express";
-import {registerUser} from './user.service'
+import userService from "./user.service";
+import { SUCCESS_CODES } from "../../constants/codes.constants";
+import { ResponseHandler } from "../../utility/response-handler";
+import { SUCCESS_RESPONSES } from "../../constants/response.constants";
 
 export const userRouter = Router();
 
-
-
-userRouter.post("/register",async(req,res,next)=>{
+userRouter.post("/register", async (req, res, next) => {
     try {
-       await registerUser(req.body) 
+       const {token} = await userService.registerUser(req.body);
+        res.status(SUCCESS_CODES.CREATED).send(
+            new ResponseHandler({...SUCCESS_RESPONSES.CREATED,token})
+        );
     } catch (error) {
         console.log(error);
-        next(error)
+        next(error);
     }
-})
+});
