@@ -17,3 +17,12 @@ userRouter.post("/register", async (req, res, next) => {
         next(error);
     }
 });
+userRouter.post("/login", async (req, res, next) => {
+    try {
+       const response= await userService.userLogin(req.body);
+       res.status(SUCCESS_CODES.OK).send(new ResponseHandler(response))
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+});

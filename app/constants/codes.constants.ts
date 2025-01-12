@@ -13,5 +13,6 @@ export const ERROR_CODES = {
     CREATED: 201,
     UPDATED: 200,
     DELETED: 200,
+    OK : 200
   };
   
