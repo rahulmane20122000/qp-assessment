@@ -42,9 +42,9 @@ export const authorize = (excludedPaths: IExcludedPaths[]) => {
     }
 }
 
-export const permit = (permittedRoles: string[]) => {
+export const permit = (permittedRoles: number[]) => {
     return (req: Request, res: Response, next: NextFunction) => {
-        if (permittedRoles.includes(res.locals.user.role)) {
+        if (permittedRoles.includes(res.locals.user.roleId)) {
             return next();
         }
 

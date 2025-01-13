@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../../config/db.config";
+import { categoryModel } from "../category/category.schema";
 
 export const groceryItemsModel = sequelize.define(
     'grocery_items',
@@ -24,6 +25,14 @@ export const groceryItemsModel = sequelize.define(
         isDeleted: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
+        },
+        category_id : {
+            type : DataTypes.INTEGER,
+            allowNull : false
+        },
+        created_by : {
+            type : DataTypes.STRING,
+            allowNull : false
         }
         
     },
@@ -31,3 +40,7 @@ export const groceryItemsModel = sequelize.define(
         timestamps : true
     }
 )
+
+groceryItemsModel.belongsTo(categoryModel,{foreignKey : 'category_id'});
+
+categoryModel.hasOne(groceryItemsModel);
